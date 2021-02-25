@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 const UserForm = (props) => {
+  const user = props.UsersObj.find(item => {
+    
+    return item.id === props.currentID
+  })?.doc
+
+
   const InitialFieldValues = {
     name: "",
     city: "",
+    ...user
   };
-
+  
   var [values, setValues] = useState(InitialFieldValues)
+  console.log(values)
+
   const handleInputChange = (e) => {
     var { name, value } = e.target;
     setValues({
@@ -15,18 +24,7 @@ const UserForm = (props) => {
     });
   };
 
-  useEffect(() => {
-    
-    if (props.currentID =='')
-      setValues({
-        ...InitialFieldValues,
-      })
-    else
-      setValues({
-        ...props.UsersObj[props.currentID],
-      })
-  }, [props.currentID, props.UsersObj]);
-
+   
   const handleFormSubmit = (e) => {
     e.preventDefault();
     props.addorEdit(values);
@@ -44,6 +42,7 @@ const UserForm = (props) => {
             className="form-control"
             name="name"
             value={values.name}
+            
             onChange={handleInputChange}
             id="name"
             placeholder="Enter Name"
@@ -63,9 +62,8 @@ const UserForm = (props) => {
             placeholder="Enter City"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+        <input type="submit" value={props.currentID?"Update":"Add"} className="btn btn-primary"/>
+          
       </form>
     </>
   );

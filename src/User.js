@@ -5,17 +5,12 @@ import db from "./firebase";
 
 const User = () => {
   var [UsersObj, setUsersObj] = useState([]);
-  var [currentID, setcurrentID] = useState('');
-
+  var [currentID, setCurrentID] = useState('');
+   
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
-      console.log(snapshot.docs.map((doc) => doc.data().obj));
-      console.log(
-        snapshot.docs.map((doc) => ({
-          doc: doc.data().obj,
-          id: doc.id,
-        }))
-      );
+      
+      
       setUsersObj(
         snapshot.docs.map((doc) => ({
           doc: doc.data().obj,
@@ -25,20 +20,24 @@ const User = () => {
     });
   }, []);
 
-  console.log(UsersObj);
+ 
 
   const addorEdit = (obj) => {
-    db.collection("users")
-      .add({
-        obj,
-        createdAt: new Date(),
-      })
-      .then(() => console.log("added"));
+    if(currentID=='')
+      db.collection("users").add({ obj, createdAt: new Date() }).then(() => console.log("added"));
+    else
+      db.collection("users").doc(currentID).update({obj,createdAt: new Date()}) .then(() => console.log("updated"));
   };
+
+  const onDelete = key => {
+    if (window.confirm("Are you sure to delete this record?")) {
+      db.collection("users").doc(key).delete({createdAt: new Date()}) .then(() => console.log("deleted"));
+    }
+  }
   return (
     <>
       <div className="col-md-5">
-        <UserForm addorEdit={addorEdit} currentID={currentID} UsersObj={UsersObj} />
+        <UserForm addorEdit={addorEdit} key={currentID} currentID={currentID} UsersObj={UsersObj} />
       </div>
 
       <div className="col-md-7">
@@ -62,13 +61,16 @@ const User = () => {
                     <a
                       className="btn text-primary"
                       onClick={() => {
-                        setcurrentID(data.id);
+                        setCurrentID(data.id)
                       }}
                     >
                       <i className="fas fa-pencil-alt"></i>
                     </a>
-                    {data.id}
-                    <a className="btn text-danger">
+                    
+                    <a className="btn text-danger"
+                    onClick={() => {
+                      onDelete(data.id)
+                    }}>
                       <i className="fas  fa-trash-alt"></i>
                     </a>
                   </td>
