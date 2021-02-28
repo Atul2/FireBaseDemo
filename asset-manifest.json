@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/FireBaseDemo/static/css/main.0b5542ff.chunk.css",
+    "main.js": "/FireBaseDemo/static/js/main.ad2329b8.chunk.js",
+    "main.js.map": "/FireBaseDemo/static/js/main.ad2329b8.chunk.js.map",
+    "runtime-main.js": "/FireBaseDemo/static/js/runtime-main.f6115a96.js",
+    "runtime-main.js.map": "/FireBaseDemo/static/js/runtime-main.f6115a96.js.map",
+    "static/css/2.dd157890.chunk.css": "/FireBaseDemo/static/css/2.dd157890.chunk.css",
+    "static/js/2.cd4b28cd.chunk.js": "/FireBaseDemo/static/js/2.cd4b28cd.chunk.js",
+    "static/js/2.cd4b28cd.chunk.js.map": "/FireBaseDemo/static/js/2.cd4b28cd.chunk.js.map",
+    "index.html": "/FireBaseDemo/index.html",
+    "static/css/2.dd157890.chunk.css.map": "/FireBaseDemo/static/css/2.dd157890.chunk.css.map",
+    "static/css/main.0b5542ff.chunk.css.map": "/FireBaseDemo/static/css/main.0b5542ff.chunk.css.map",
+    "static/js/2.cd4b28cd.chunk.js.LICENSE.txt": "/FireBaseDemo/static/js/2.cd4b28cd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f6115a96.js",
+    "static/css/2.dd157890.chunk.css",
+    "static/js/2.cd4b28cd.chunk.js",
+    "static/css/main.0b5542ff.chunk.css",
+    "static/js/main.ad2329b8.chunk.js"
+  ]
+}
