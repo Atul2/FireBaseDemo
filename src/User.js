@@ -9,8 +9,8 @@ const User = () => {
    
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
-      
-      
+
+       
       setUsersObj(
         snapshot.docs.map((doc) => ({
           doc: doc.data().obj,
@@ -20,6 +20,7 @@ const User = () => {
     });
   }, []);
 
+  
  
 
   const addorEdit = (obj) => {
@@ -34,6 +35,7 @@ const User = () => {
       db.collection("users").doc(key).delete({createdAt: new Date()}) .then(() => console.log("deleted"));
     }
   }
+
   return (
     <>
       <div className="col-md-5">
@@ -58,19 +60,19 @@ const User = () => {
                   <td>{data.doc.name}</td>
                   <td>{data.doc.city}</td>
                   <td>
-                    <a
-                      className="btn text-primary"
-                      onClick={() => {
-                        setCurrentID(data.id)
-                      }}
-                    >
-                      <i className="fas fa-pencil-alt"></i>
-                    </a>
+                      <a
+                        className="btn text-primary"
+                        onClick={() => {
+                          setCurrentID(data.id)
+                        }}
+                      >
+                        <i className="fas fa-pencil-alt"></i>
+                      </a>
                     
-                    <a className="btn text-danger"
-                    onClick={() => {
-                      onDelete(data.id)
-                    }}>
+                      <a className="btn text-danger"
+                      onClick={() => {
+                        onDelete(data.id)
+                      }}>
                       <i className="fas  fa-trash-alt"></i>
                     </a>
                   </td>
